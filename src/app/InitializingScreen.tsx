@@ -4,6 +4,7 @@ import { style } from 'typestyle';
 import { isKioskMode } from '../utils/SearchParamUtils';
 
 import kialiTitle from '../assets/img/logo-lightbkg.svg';
+import i18n from 'i18next';
 
 type initializingScreenProps = {
   errorMsg?: string;
@@ -70,17 +71,15 @@ const InitializingScreen: React.FC<initializingScreenProps> = (props: initializi
       <img alt="Kiali Logo" src={kialiTitle} width="200" />
       {props.errorMsg ? (
         <div ref={errorDiv} className={defaultErrorStyle}>
-          <Alert variant="danger" title={props.errorMsg} />
+          <Alert variant="danger" title={i18n.t(props.errorMsg)} />
           {props.errorDetails ? (
             <>
               <p>
                 <a href="#" onClick={onClickHandler}>
-                  Show details
+                  {i18n.t('Show details')}
                 </a>
               </p>
-              <textarea readOnly={true} rows={10}>
-                {props.errorDetails}
-              </textarea>
+              <textarea readOnly={true} rows={10} value={props.errorDetails} />
             </>
           ) : null}
         </div>
